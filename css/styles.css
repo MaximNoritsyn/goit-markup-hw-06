@@ -999,9 +999,10 @@ Modal window
   top: 50%;
   left: 50%;
   z-index: 1001;
-  width: 408px;
+  width: 95%;
+  max-width: 408px;
   min-height: 584px;
-  padding: 72px 24px 24px 24px;
+  padding: 72px 16px 24px 16px;
   transform: translate(-50%, -50%);
 
   border-radius: 4px;
@@ -1012,6 +1013,18 @@ Modal window
 
   scale: 1;
   transition: transform var(--transition-settings);
+}
+@media screen and (min-width: 400px) {
+  .modal {
+    width: 90%;
+    padding: 72px 20px 24px 20px;
+  }
+}
+@media screen and (min-width: 450px) {
+  .modal {
+    width: 408px;
+    padding: 72px 24px 24px 24px;
+  }
 }
 
 .is-hidden {
