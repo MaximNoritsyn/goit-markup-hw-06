@@ -95,13 +95,6 @@ ul {
   text-decoration: none;
 }
 
-.link.navbar-link,
-.link.address-link {
-  padding: 24px 0px;
-  display: inline-block;
-  transition: color var(--transition-settings);
-}
-
 .list .link:hover,
 .list .link:focus,
 .link:hover,
@@ -144,6 +137,7 @@ HEADER
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 72px;
 }
 
 .header .navbar,
@@ -152,19 +146,36 @@ HEADER
   flex-direction: row;
   align-items: center;
 }
-
-.header .navbar {
-  padding-left: calc((156px - 15px) - ((1440px - 1158px) / 2));
+@media screen and (min-width: 1158px) {
+  .header .navbar,
+  .header .address {
+    padding-left: calc((156px - 15px) - ((1440px - 1158px) / 2));
+  }
 }
 
-.header .address {
-  padding-right: calc((156px - 15px) - ((1440px - 1158px) / 2));
-}
-
-.header .container .list {
-  display: flex;
+.header .navbar .list {
+  display: none;
   flex-direction: row;
   gap: 40px;
+}
+
+.header .address .list {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+@media screen and (min-width: 768px) {
+  .header .address .list,
+  .header .navbar .list {
+    display: flex;
+  }
+}
+@media screen and (min-width: 1158px) {
+  .header .address .list,
+  .header .navbar .list {
+    flex-direction: row;
+    gap: 40px;
+  }
 }
 
 .logo {
@@ -178,11 +189,28 @@ HEADER
   text-transform: uppercase;
   align-self: center;
   display: inline-block;
-  margin-right: 76px;
+  margin-right: 120px;
+}
+@media screen and (min-width: 1158px) {
+  .logo {
+    margin-right: 76px;
+  }
 }
 
 .logo-dark {
   color: var(--color-dark);
+}
+
+.link.navbar-link,
+.link.address-link {
+  display: inline-block;
+  transition: color var(--transition-settings);
+}
+@media screen and (min-width: 1158px) {
+  .link.navbar-link,
+  .link.address-link {
+    padding: 24px 0px;
+  }
 }
 
 .navbar-link {
@@ -195,19 +223,27 @@ HEADER
   position: relative;
 }
 
-.address .address-link {
+.header .address .address-link {
   color: var(--color-text);
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.32px;
+  line-height: 1.17;
+  letter-spacing: 0.48px;
+}
+@media screen and (min-width: 1158px) {
+  .header .address .address-link {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.48px;
+  }
 }
 
 .current {
   color: var(--color-pressed-state);
 }
 
-.navbar-link::after {
+.header .navbar-link::after {
   opacity: 0;
   position: absolute;
   bottom: -1px;
@@ -222,7 +258,7 @@ HEADER
   border-radius: 2px;
 }
 
-.current::after {
+.header .current::after {
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -237,6 +273,22 @@ HEADER
 
 .navbar-link:hover::after {
   opacity: 1;
+}
+
+.header .btn-mobile-menu {
+  display: block;
+  cursor: pointer;
+  background-color: transparent;
+  border-width: 0px;
+}
+@media screen and (min-width: 768px) {
+  .header .btn-mobile-menu {
+    display: none;
+  }
+}
+
+.header .btn-mobile-menu .icon {
+  margin: 0 auto;
 }
 
 /** 
@@ -338,7 +390,8 @@ MAIN
 .strategy .container .item {
   flex-basis: 264px;
   display: block;
-  width: 328px;
+  min-width: 328px;
+  width: 100%;
 }
 @media screen and (min-width: 768px) {
   .strategy .container .item {
@@ -1104,4 +1157,70 @@ input[type='checkbox']:focus-visible ~ .checkmark {
 
   color: var(--color-white-background);
   font-size: 16px;
+}
+
+/* mobile menu modal */
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  padding-top: 80px;
+  background-color: var(--color-white-background);
+  z-index: 999;
+
+  transform: translateX(100%);
+  transition: transform 250ms ease-in-out;
+}
+
+.menu-container.is-open {
+  transform: translateX(0);
+}
+
+.menu-container .icon-close-container {
+  background-color: var(--color-white-background);
+}
+
+.menu-container .navbar .list {
+  display: block;
+}
+
+.menu-container .navbar-link {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.11;
+  letter-spacing: 0.72px;
+  margin-bottom: 40px;
+}
+
+.menu-container .address .address-link.mobile {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.11;
+  letter-spacing: 0.72px;
+  margin-bottom: 40px;
+}
+
+.menu-container .address .address-link.email {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.4px;
+  color: var(--color-text);
+  margin-bottom: 48px;
+}
+
+.menu-container .list-socials {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-container .list-socials .icon-container {
+  fill: var(--color-white-background);
 }
