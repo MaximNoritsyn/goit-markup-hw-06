@@ -301,7 +301,7 @@ MAIN
       rgba(46, 47, 66, 0.7),
       rgba(46, 47, 66, 0.7)
     ),
-    url(../images/hero-bg.jpeg);
+    url(../images/hero-bg.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -319,6 +319,15 @@ MAIN
 @media screen and (min-width: 1158px) {
   .hero {
     padding: 188px 0px;
+  }
+}
+@media screen and (min-resolution: 192dpi) {
+  .hero {
+    background-image: linear-gradient(
+        rgba(46, 47, 66, 0.7),
+        rgba(46, 47, 66, 0.7)
+      ),
+      url(../images/hero-bg@2x.png);
   }
 }
 
@@ -480,6 +489,9 @@ MAIN
 @media screen and (min-width: 1158px) {
   .container .list {
     flex-wrap: nowrap;
+  }
+  .portfolio .container .list {
+    flex-wrap: wrap;
   }
 }
 
