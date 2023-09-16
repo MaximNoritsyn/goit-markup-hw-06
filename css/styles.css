@@ -233,9 +233,7 @@ HEADER
 @media screen and (min-width: 1158px) {
   .header .address .address-link {
     font-size: 16px;
-    font-weight: 400;
     line-height: 1.5;
-    letter-spacing: 0.48px;
   }
 }
 
@@ -598,8 +596,7 @@ MAIN
 }
 @media screen and (min-width: 768px) {
   .customers .container .list {
-    gap: 24px;
-    row-gap: 72px;
+    gap: 72px 24px;
   }
 }
 @media screen and (min-width: 1158px) {
